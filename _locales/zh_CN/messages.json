@@ -1,0 +1,334 @@
+{
+    "extensionName": {
+        "message": "SmartProxy",
+        "description": "扩展名称"
+    },
+    "extensionDescription": {
+        "message": "智能代理管理器 - 支持多代理配置和规则自动切换",
+        "description": "扩展描述"
+    },
+    "settingsTitle": {
+        "message": "SmartProxy 设置",
+        "description": "设置页面标题"
+    },
+    "proxyMode": {
+        "message": "代理模式",
+        "description": ""
+    },
+    "modeDirect": {
+        "message": "直接连接",
+        "description": ""
+    },
+    "modeGlobal": {
+        "message": "全局代理",
+        "description": ""
+    },
+    "modeAuto": {
+        "message": "按规则代理",
+        "description": ""
+    },
+    "modePac": {
+        "message": "PAC 脚本",
+        "description": ""
+    },
+    "proxyServers": {
+        "message": "代理服务器",
+        "description": ""
+    },
+    "noProxies": {
+        "message": "暂无代理配置",
+        "description": ""
+    },
+    "ruleTest": {
+        "message": "规则测试",
+        "description": ""
+    },
+    "testUrlPlaceholder": {
+        "message": "输入 URL 测试匹配规则",
+        "description": ""
+    },
+    "test": {
+        "message": "测试",
+        "description": ""
+    },
+    "addRuleForSite": {
+        "message": "添加规则",
+        "description": ""
+    },
+    "settings": {
+        "message": "设置",
+        "description": ""
+    },
+    "tabProxies": {
+        "message": "代理配置",
+        "description": ""
+    },
+    "tabRules": {
+        "message": "规则列表",
+        "description": ""
+    },
+    "tabSettings": {
+        "message": "高级设置",
+        "description": ""
+    },
+    "tabImportExport": {
+        "message": "导入/导出",
+        "description": ""
+    },
+    "addProxy": {
+        "message": "添加代理",
+        "description": ""
+    },
+    "editProxy": {
+        "message": "编辑代理",
+        "description": ""
+    },
+    "addRule": {
+        "message": "添加规则",
+        "description": ""
+    },
+    "editRule": {
+        "message": "编辑规则",
+        "description": ""
+    },
+    "colColor": {
+        "message": "颜色",
+        "description": ""
+    },
+    "colName": {
+        "message": "名称",
+        "description": ""
+    },
+    "colType": {
+        "message": "类型",
+        "description": ""
+    },
+    "colAddress": {
+        "message": "地址",
+        "description": ""
+    },
+    "colPort": {
+        "message": "端口",
+        "description": ""
+    },
+    "colEnabled": {
+        "message": "状态",
+        "description": ""
+    },
+    "colActions": {
+        "message": "操作",
+        "description": ""
+    },
+    "colPattern": {
+        "message": "匹配模式",
+        "description": ""
+    },
+    "colRuleType": {
+        "message": "类型",
+        "description": ""
+    },
+    "colProxy": {
+        "message": "代理",
+        "description": ""
+    },
+    "enableAll": {
+        "message": "全部启用",
+        "description": ""
+    },
+    "disableAll": {
+        "message": "全部禁用",
+        "description": ""
+    },
+    "noProxiesHint": {
+        "message": "还没有配置任何代理服务器",
+        "description": ""
+    },
+    "noRulesHint": {
+        "message": "还没有配置任何规则",
+        "description": ""
+    },
+    "addFirstProxy": {
+        "message": "添加第一个代理",
+        "description": ""
+    },
+    "addFirstRule": {
+        "message": "添加第一条规则",
+        "description": ""
+    },
+    "rulesHint": {
+        "message": "💡 拖拽规则可调整优先级，排在前面的规则优先匹配",
+        "description": ""
+    },
+    "proxyName": {
+        "message": "名称",
+        "description": ""
+    },
+    "proxyColor": {
+        "message": "颜色",
+        "description": ""
+    },
+    "proxyType": {
+        "message": "类型",
+        "description": ""
+    },
+    "proxyHost": {
+        "message": "主机地址",
+        "description": ""
+    },
+    "proxyPort": {
+        "message": "端口",
+        "description": ""
+    },
+    "proxyUsername": {
+        "message": "用户名（可选）",
+        "description": ""
+    },
+    "proxyPassword": {
+        "message": "密码（可选）",
+        "description": ""
+    },
+    "rulePattern": {
+        "message": "匹配模式",
+        "description": ""
+    },
+    "ruleType": {
+        "message": "匹配类型",
+        "description": ""
+    },
+    "ruleProxy": {
+        "message": "使用代理",
+        "description": ""
+    },
+    "ruleNote": {
+        "message": "备注（可选）",
+        "description": ""
+    },
+    "typeWildcard": {
+        "message": "通配符",
+        "description": ""
+    },
+    "typeRegexp": {
+        "message": "正则表达式",
+        "description": ""
+    },
+    "typeDomain": {
+        "message": "域名",
+        "description": ""
+    },
+    "typeIp": {
+        "message": "IP/CIDR",
+        "description": ""
+    },
+    "actionDirect": {
+        "message": "直接连接",
+        "description": ""
+    },
+    "save": {
+        "message": "保存",
+        "description": ""
+    },
+    "cancel": {
+        "message": "取消",
+        "description": ""
+    },
+    "settingDefaultAction": {
+        "message": "默认动作",
+        "description": ""
+    },
+    "defaultActionHint": {
+        "message": "当 URL 不匹配任何规则时的默认行为",
+        "description": ""
+    },
+    "settingPacUrl": {
+        "message": "PAC 脚本 URL",
+        "description": ""
+    },
+    "pacUrlHint": {
+        "message": "PAC 模式下使用的自动配置脚本地址",
+        "description": ""
+    },
+    "settingNotifications": {
+        "message": "启用通知",
+        "description": ""
+    },
+    "notificationsHint": {
+        "message": "代理切换时显示桌面通知",
+        "description": ""
+    },
+    "settingContextMenu": {
+        "message": "启用右键菜单",
+        "description": ""
+    },
+    "contextMenuHint": {
+        "message": "在页面右键菜单中显示代理选项",
+        "description": ""
+    },
+    "saveSettings": {
+        "message": "保存设置",
+        "description": ""
+    },
+    "exportTitle": {
+        "message": "导出配置",
+        "description": ""
+    },
+    "exportDesc": {
+        "message": "将当前的代理配置和规则导出为 JSON 文件",
+        "description": ""
+    },
+    "exportConfig": {
+        "message": "导出配置",
+        "description": ""
+    },
+    "importTitle": {
+        "message": "导入配置",
+        "description": ""
+    },
+    "importDesc": {
+        "message": "从 JSON 文件导入代理配置和规则",
+        "description": ""
+    },
+    "importReplace": {
+        "message": "覆盖现有配置",
+        "description": ""
+    },
+    "importMerge": {
+        "message": "合并到现有配置",
+        "description": ""
+    },
+    "importConfig": {
+        "message": "选择文件导入",
+        "description": ""
+    },
+    "resetTitle": {
+        "message": "重置配置",
+        "description": ""
+    },
+    "resetDesc": {
+        "message": "清除所有配置，恢复到初始状态",
+        "description": ""
+    },
+    "resetConfig": {
+        "message": "重置所有配置",
+        "description": ""
+    },
+    "contextMenuAddRule": {
+        "message": "为此网站添加代理规则",
+        "description": ""
+    },
+    "contextMenuTempDisable": {
+        "message": "临时禁用此页面代理",
+        "description": ""
+    },
+    "contextMenuProxyMode": {
+        "message": "代理模式",
+        "description": ""
+    },
+    "ruleAdded": {
+        "message": "规则已添加",
+        "description": ""
+    },
+    "proxyDisabled": {
+        "message": "代理已禁用",
+        "description": ""
+    }
+}

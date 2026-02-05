@@ -1,0 +1,334 @@
+{
+    "extensionName": {
+        "message": "SmartProxy",
+        "description": "Extension name"
+    },
+    "extensionDescription": {
+        "message": "Smart Proxy Manager - Multiple proxy configurations with automatic rule switching",
+        "description": "Extension description"
+    },
+    "settingsTitle": {
+        "message": "SmartProxy Settings",
+        "description": "Settings page title"
+    },
+    "proxyMode": {
+        "message": "Proxy Mode",
+        "description": ""
+    },
+    "modeDirect": {
+        "message": "Direct",
+        "description": ""
+    },
+    "modeGlobal": {
+        "message": "Global Proxy",
+        "description": ""
+    },
+    "modeAuto": {
+        "message": "Auto Switch",
+        "description": ""
+    },
+    "modePac": {
+        "message": "PAC Script",
+        "description": ""
+    },
+    "proxyServers": {
+        "message": "Proxy Servers",
+        "description": ""
+    },
+    "noProxies": {
+        "message": "No proxy configured",
+        "description": ""
+    },
+    "ruleTest": {
+        "message": "Rule Test",
+        "description": ""
+    },
+    "testUrlPlaceholder": {
+        "message": "Enter URL to test matching rules",
+        "description": ""
+    },
+    "test": {
+        "message": "Test",
+        "description": ""
+    },
+    "addRuleForSite": {
+        "message": "Add Rule",
+        "description": ""
+    },
+    "settings": {
+        "message": "Settings",
+        "description": ""
+    },
+    "tabProxies": {
+        "message": "Proxies",
+        "description": ""
+    },
+    "tabRules": {
+        "message": "Rules",
+        "description": ""
+    },
+    "tabSettings": {
+        "message": "Settings",
+        "description": ""
+    },
+    "tabImportExport": {
+        "message": "Import/Export",
+        "description": ""
+    },
+    "addProxy": {
+        "message": "Add Proxy",
+        "description": ""
+    },
+    "editProxy": {
+        "message": "Edit Proxy",
+        "description": ""
+    },
+    "addRule": {
+        "message": "Add Rule",
+        "description": ""
+    },
+    "editRule": {
+        "message": "Edit Rule",
+        "description": ""
+    },
+    "colColor": {
+        "message": "Color",
+        "description": ""
+    },
+    "colName": {
+        "message": "Name",
+        "description": ""
+    },
+    "colType": {
+        "message": "Type",
+        "description": ""
+    },
+    "colAddress": {
+        "message": "Address",
+        "description": ""
+    },
+    "colPort": {
+        "message": "Port",
+        "description": ""
+    },
+    "colEnabled": {
+        "message": "Status",
+        "description": ""
+    },
+    "colActions": {
+        "message": "Actions",
+        "description": ""
+    },
+    "colPattern": {
+        "message": "Pattern",
+        "description": ""
+    },
+    "colRuleType": {
+        "message": "Type",
+        "description": ""
+    },
+    "colProxy": {
+        "message": "Proxy",
+        "description": ""
+    },
+    "enableAll": {
+        "message": "Enable All",
+        "description": ""
+    },
+    "disableAll": {
+        "message": "Disable All",
+        "description": ""
+    },
+    "noProxiesHint": {
+        "message": "No proxy servers configured yet",
+        "description": ""
+    },
+    "noRulesHint": {
+        "message": "No rules configured yet",
+        "description": ""
+    },
+    "addFirstProxy": {
+        "message": "Add Your First Proxy",
+        "description": ""
+    },
+    "addFirstRule": {
+        "message": "Add Your First Rule",
+        "description": ""
+    },
+    "rulesHint": {
+        "message": "💡 Drag rules to adjust priority. Rules at the top are matched first.",
+        "description": ""
+    },
+    "proxyName": {
+        "message": "Name",
+        "description": ""
+    },
+    "proxyColor": {
+        "message": "Color",
+        "description": ""
+    },
+    "proxyType": {
+        "message": "Type",
+        "description": ""
+    },
+    "proxyHost": {
+        "message": "Host",
+        "description": ""
+    },
+    "proxyPort": {
+        "message": "Port",
+        "description": ""
+    },
+    "proxyUsername": {
+        "message": "Username (optional)",
+        "description": ""
+    },
+    "proxyPassword": {
+        "message": "Password (optional)",
+        "description": ""
+    },
+    "rulePattern": {
+        "message": "Pattern",
+        "description": ""
+    },
+    "ruleType": {
+        "message": "Match Type",
+        "description": ""
+    },
+    "ruleProxy": {
+        "message": "Use Proxy",
+        "description": ""
+    },
+    "ruleNote": {
+        "message": "Note (optional)",
+        "description": ""
+    },
+    "typeWildcard": {
+        "message": "Wildcard",
+        "description": ""
+    },
+    "typeRegexp": {
+        "message": "Regular Expression",
+        "description": ""
+    },
+    "typeDomain": {
+        "message": "Domain",
+        "description": ""
+    },
+    "typeIp": {
+        "message": "IP/CIDR",
+        "description": ""
+    },
+    "actionDirect": {
+        "message": "Direct",
+        "description": ""
+    },
+    "save": {
+        "message": "Save",
+        "description": ""
+    },
+    "cancel": {
+        "message": "Cancel",
+        "description": ""
+    },
+    "settingDefaultAction": {
+        "message": "Default Action",
+        "description": ""
+    },
+    "defaultActionHint": {
+        "message": "Default behavior when URL doesn't match any rules",
+        "description": ""
+    },
+    "settingPacUrl": {
+        "message": "PAC Script URL",
+        "description": ""
+    },
+    "pacUrlHint": {
+        "message": "Auto-config script URL for PAC mode",
+        "description": ""
+    },
+    "settingNotifications": {
+        "message": "Enable Notifications",
+        "description": ""
+    },
+    "notificationsHint": {
+        "message": "Show desktop notifications when proxy changes",
+        "description": ""
+    },
+    "settingContextMenu": {
+        "message": "Enable Context Menu",
+        "description": ""
+    },
+    "contextMenuHint": {
+        "message": "Show proxy options in page context menu",
+        "description": ""
+    },
+    "saveSettings": {
+        "message": "Save Settings",
+        "description": ""
+    },
+    "exportTitle": {
+        "message": "Export Configuration",
+        "description": ""
+    },
+    "exportDesc": {
+        "message": "Export current proxy configs and rules to a JSON file",
+        "description": ""
+    },
+    "exportConfig": {
+        "message": "Export",
+        "description": ""
+    },
+    "importTitle": {
+        "message": "Import Configuration",
+        "description": ""
+    },
+    "importDesc": {
+        "message": "Import proxy configs and rules from a JSON file",
+        "description": ""
+    },
+    "importReplace": {
+        "message": "Replace existing config",
+        "description": ""
+    },
+    "importMerge": {
+        "message": "Merge with existing config",
+        "description": ""
+    },
+    "importConfig": {
+        "message": "Select File to Import",
+        "description": ""
+    },
+    "resetTitle": {
+        "message": "Reset Configuration",
+        "description": ""
+    },
+    "resetDesc": {
+        "message": "Clear all configurations and restore to initial state",
+        "description": ""
+    },
+    "resetConfig": {
+        "message": "Reset All",
+        "description": ""
+    },
+    "contextMenuAddRule": {
+        "message": "Add proxy rule for this site",
+        "description": ""
+    },
+    "contextMenuTempDisable": {
+        "message": "Temporarily disable proxy for this page",
+        "description": ""
+    },
+    "contextMenuProxyMode": {
+        "message": "Proxy Mode",
+        "description": ""
+    },
+    "ruleAdded": {
+        "message": "Rule Added",
+        "description": ""
+    },
+    "proxyDisabled": {
+        "message": "Proxy Disabled",
+        "description": ""
+    }
+}

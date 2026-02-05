@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-i18n="settingsTitle">SmartProxy 设置</title>
+    <link rel="stylesheet" href="options.css">
+</head>
+
+<body>
+    <div class="options-container">
+        <!-- 侧边栏 -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <img src="../icons/icon-48.png" alt="SmartProxy" class="logo">
+                <h1 data-i18n="extensionName">SmartProxy</h1>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="#proxies" class="nav-item active" data-tab="proxies">
+                    <span class="nav-icon">🌐</span>
+                    <span data-i18n="tabProxies">代理配置</span>
+                </a>
+                <a href="#rules" class="nav-item" data-tab="rules">
+                    <span class="nav-icon">📋</span>
+                    <span data-i18n="tabRules">规则列表</span>
+                </a>
+                <a href="#settings" class="nav-item" data-tab="settings">
+                    <span class="nav-icon">⚙️</span>
+                    <span data-i18n="tabSettings">高级设置</span>
+                </a>
+                <a href="#import-export" class="nav-item" data-tab="import-export">
+                    <span class="nav-icon">📦</span>
+                    <span data-i18n="tabImportExport">导入/导出</span>
+                </a>
+            </nav>
+            <div class="sidebar-footer">
+                <span>v1.0.0</span>
+            </div>
+        </aside>
+
+        <!-- 主内容区 -->
+        <main class="main-content">
+            <!-- 代理配置 -->
+            <section id="proxies" class="tab-content active">
+                <div class="section-header">
+                    <h2 data-i18n="tabProxies">代理配置</h2>
+                    <button class="btn btn-primary" id="addProxyBtn">
+                        <span>+</span>
+                        <span data-i18n="addProxy">添加代理</span>
+                    </button>
+                </div>
+                <div class="proxy-table-container">
+                    <table class="data-table" id="proxyTable">
+                        <thead>
+                            <tr>
+                                <th data-i18n="colColor">颜色</th>
+                                <th data-i18n="colName">名称</th>
+                                <th data-i18n="colType">类型</th>
+                                <th data-i18n="colAddress">地址</th>
+                                <th data-i18n="colPort">端口</th>
+                                <th data-i18n="colEnabled">状态</th>
+                                <th data-i18n="colActions">操作</th>
+                            </tr>
+                        </thead>
+                        <tbody id="proxyTableBody">
+                            <!-- 动态填充 -->
+                        </tbody>
+                    </table>
+                    <div class="empty-state" id="proxyEmptyState">
+                        <span class="empty-icon">📭</span>
+                        <p data-i18n="noProxiesHint">还没有配置任何代理服务器</p>
+                        <button class="btn btn-outline" id="addProxyEmptyBtn" data-i18n="addFirstProxy">添加第一个代理</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 规则列表 -->
+            <section id="rules" class="tab-content">
+                <div class="section-header">
+                    <h2 data-i18n="tabRules">规则列表</h2>
+                    <div class="header-actions">
+                        <button class="btn btn-secondary" id="enableAllRulesBtn" data-i18n="enableAll">全部启用</button>
+                        <button class="btn btn-secondary" id="disableAllRulesBtn" data-i18n="disableAll">全部禁用</button>
+                        <button class="btn btn-primary" id="addRuleBtn">
+                            <span>+</span>
+                            <span data-i18n="addRule">添加规则</span>
+                        </button>
+                    </div>
+                </div>
+                <div class="rules-hint">
+                    <span data-i18n="rulesHint">💡 拖拽规则可调整优先级，排在前面的规则优先匹配</span>
+                </div>
+                <div class="rule-table-container">
+                    <table class="data-table" id="ruleTable">
+                        <thead>
+                            <tr>
+                                <th style="width: 30px;"></th>
+                                <th data-i18n="colPattern">匹配模式</th>
+                                <th data-i18n="colRuleType">类型</th>
+                                <th data-i18n="colProxy">代理</th>
+                                <th data-i18n="colEnabled">状态</th>
+                                <th data-i18n="colActions">操作</th>
+                            </tr>
+                        </thead>
+                        <tbody id="ruleTableBody">
+                            <!-- 动态填充 -->
+                        </tbody>
+                    </table>
+                    <div class="empty-state" id="ruleEmptyState">
+                        <span class="empty-icon">📝</span>
+                        <p data-i18n="noRulesHint">还没有配置任何规则</p>
+                        <button class="btn btn-outline" id="addRuleEmptyBtn" data-i18n="addFirstRule">添加第一条规则</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 高级设置 -->
+            <section id="settings" class="tab-content">
+                <div class="section-header">
+                    <h2 data-i18n="tabSettings">高级设置</h2>
+                </div>
+                <div class="settings-form">
+                    <div class="form-group">
+                        <label data-i18n="settingDefaultAction">默认动作</label>
+                        <select id="defaultAction" class="form-select">
+                            <option value="direct" data-i18n="actionDirect">直接连接</option>
+                        </select>
+                        <p class="form-hint" data-i18n="defaultActionHint">当 URL 不匹配任何规则时的默认行为</p>
+                    </div>
+
+                    <div class="form-group">
+                        <label>主题</label>
+                        <select id="themeSelect" class="form-select">
+                            <option value="dark">深色模式</option>
+                            <option value="light">浅色模式</option>
+                        </select>
+                        <p class="form-hint">选择界面显示主题</p>
+                    </div>
+
+                    <div class="form-group">
+                        <label data-i18n="settingPacUrl">PAC 脚本 URL</label>
+                        <input type="text" id="pacScriptUrl" class="form-input"
+                            placeholder="https://example.com/proxy.pac">
+                        <p class="form-hint" data-i18n="pacUrlHint">PAC 模式下使用的自动配置脚本地址</p>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="switch-label">
+                            <span data-i18n="settingNotifications">启用通知</span>
+                            <input type="checkbox" id="enableNotifications" class="switch-input">
+                            <span class="switch-slider"></span>
+                        </label>
+                        <p class="form-hint" data-i18n="notificationsHint">代理切换时显示桌面通知</p>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="switch-label">
+                            <span data-i18n="settingContextMenu">启用右键菜单</span>
+                            <input type="checkbox" id="enableContextMenu" class="switch-input">
+                            <span class="switch-slider"></span>
+                        </label>
+                        <p class="form-hint" data-i18n="contextMenuHint">在页面右键菜单中显示代理选项</p>
+                    </div>
+
+                    <div class="form-group">
+                        <button class="btn btn-primary" id="saveSettingsBtn" data-i18n="saveSettings">保存设置</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 导入/导出 -->
+            <section id="import-export" class="tab-content">
+                <div class="section-header">
+                    <h2 data-i18n="tabImportExport">导入/导出</h2>
+                </div>
+                <div class="import-export-grid">
+                    <div class="card">
+                        <h3 data-i18n="exportTitle">导出配置</h3>
+                        <p data-i18n="exportDesc">将当前的代理配置和规则导出为 JSON 文件</p>
+                        <button class="btn btn-primary" id="exportBtn" data-i18n="exportConfig">导出配置</button>
+                    </div>
+                    <div class="card">
+                        <h3 data-i18n="importTitle">导入配置</h3>
+                        <p data-i18n="importDesc">从 JSON 文件导入代理配置和规则</p>
+                        <div class="import-options">
+                            <label class="radio-label">
+                                <input type="radio" name="importMode" value="replace" checked>
+                                <span data-i18n="importReplace">覆盖现有配置</span>
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="importMode" value="merge">
+                                <span data-i18n="importMerge">合并到现有配置</span>
+                            </label>
+                        </div>
+                        <input type="file" id="importFile" accept=".json" style="display: none;">
+                        <button class="btn btn-secondary" id="importBtn" data-i18n="importConfig">选择文件导入</button>
+                    </div>
+                    <div class="card danger">
+                        <h3 data-i18n="resetTitle">重置配置</h3>
+                        <p data-i18n="resetDesc">清除所有配置，恢复到初始状态</p>
+                        <button class="btn btn-danger" id="resetBtn" data-i18n="resetConfig">重置所有配置</button>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- 代理编辑弹窗 -->
+    <div class="modal" id="proxyModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="proxyModalTitle" data-i18n="addProxy">添加代理</h3>
+                <button class="modal-close" id="closeProxyModal">&times;</button>
+            </div>
+            <form id="proxyForm" class="modal-body">
+                <input type="hidden" id="proxyId">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label data-i18n="proxyName">名称</label>
+                        <input type="text" id="proxyName" class="form-input" required>
+                    </div>
+                    <div class="form-group">
+                        <label data-i18n="proxyColor">颜色</label>
+                        <input type="color" id="proxyColor" class="form-color" value="#3b82f6">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label data-i18n="proxyType">类型</label>
+                        <select id="proxyType" class="form-select">
+                            <option value="http">HTTP</option>
+                            <option value="https">HTTPS</option>
+                            <option value="socks4">SOCKS4</option>
+                            <option value="socks5">SOCKS5</option>
+                        </select>
+                    </div>
+                    <div class="form-group flex-2">
+                        <label data-i18n="proxyHost">主机地址</label>
+                        <input type="text" id="proxyHost" class="form-input" required placeholder="例如: 127.0.0.1">
+                    </div>
+                    <div class="form-group">
+                        <label data-i18n="proxyPort">端口</label>
+                        <input type="number" id="proxyPort" class="form-input" required min="1" max="65535"
+                            value="1080">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label data-i18n="proxyUsername">用户名（可选）</label>
+                        <input type="text" id="proxyUsername" class="form-input">
+                    </div>
+                    <div class="form-group">
+                        <label data-i18n="proxyPassword">密码（可选）</label>
+                        <input type="password" id="proxyPassword" class="form-input">
+                    </div>
+                </div>
+            </form>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" id="cancelProxyBtn" data-i18n="cancel">取消</button>
+                <button class="btn btn-primary" id="saveProxyBtn" data-i18n="save">保存</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 规则编辑弹窗 -->
+    <div class="modal" id="ruleModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="ruleModalTitle" data-i18n="addRule">添加规则</h3>
+                <button class="modal-close" id="closeRuleModal">&times;</button>
+            </div>
+            <form id="ruleForm" class="modal-body">
+                <input type="hidden" id="ruleId">
+                <div class="form-group">
+                    <label data-i18n="rulePattern">匹配模式</label>
+                    <input type="text" id="rulePattern" class="form-input" required placeholder="例如: *.google.com/*">
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label data-i18n="ruleType">匹配类型</label>
+                        <select id="ruleType" class="form-select">
+                            <option value="wildcard" data-i18n="typeWildcard">通配符</option>
+                            <option value="regexp" data-i18n="typeRegexp">正则表达式</option>
+                            <option value="domain" data-i18n="typeDomain">域名</option>
+                            <option value="ip" data-i18n="typeIp">IP/CIDR</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label data-i18n="ruleProxy">使用代理</label>
+                        <select id="ruleProxy" class="form-select">
+                            <option value="direct" data-i18n="actionDirect">直接连接</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label data-i18n="ruleNote">备注（可选）</label>
+                    <input type="text" id="ruleNote" class="form-input">
+                </div>
+            </form>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" id="cancelRuleBtn" data-i18n="cancel">取消</button>
+                <button class="btn btn-primary" id="saveRuleBtn" data-i18n="save">保存</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast 通知 -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <script src="options.js" type="module"></script>
+</body>
+
+</html>

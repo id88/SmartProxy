@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=400">
+  <title data-i18n="extensionName">SmartProxy</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="popup-container">
+    <!-- 头部状态栏 -->
+    <header class="header">
+      <div class="logo">
+        <img src="../icons/icon-32.png" alt="SmartProxy">
+        <span data-i18n="extensionName">SmartProxy</span>
+      </div>
+      <div class="status-badge" id="statusBadge">
+        <span class="status-dot"></span>
+        <span class="status-text" data-i18n="modeDirect">直接连接</span>
+      </div>
+    </header>
+
+    <!-- 代理模式选择 -->
+    <section class="mode-section">
+      <h3 data-i18n="proxyMode">代理模式</h3>
+      <div class="mode-list" id="modeList">
+        <button class="mode-btn active" data-mode="direct">
+          <span class="mode-icon">🔗</span>
+          <span class="mode-name" data-i18n="modeDirect">直接连接</span>
+        </button>
+        <button class="mode-btn" data-mode="global">
+          <span class="mode-icon">🌐</span>
+          <span class="mode-name" data-i18n="modeGlobal">全局代理</span>
+        </button>
+        <button class="mode-btn" data-mode="auto">
+          <span class="mode-icon">⚡</span>
+          <span class="mode-name" data-i18n="modeAuto">按规则代理</span>
+        </button>
+        <button class="mode-btn" data-mode="pac">
+          <span class="mode-icon">📜</span>
+          <span class="mode-name" data-i18n="modePac">PAC 脚本</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- 代理服务器快速切换 -->
+    <section class="proxy-section">
+      <h3 data-i18n="proxyServers">代理服务器</h3>
+      <div class="proxy-list" id="proxyList">
+        <div class="empty-state" data-i18n="noProxies">暂无代理配置</div>
+      </div>
+    </section>
+
+    <!-- 规则测试工具 -->
+    <section class="test-section">
+      <h3 data-i18n="ruleTest">规则测试</h3>
+      <div class="test-input-group">
+        <input type="text" id="testUrl" placeholder="输入 URL 测试匹配规则" data-i18n-placeholder="testUrlPlaceholder">
+        <button id="testBtn" data-i18n="test">测试</button>
+      </div>
+      <div class="test-result" id="testResult"></div>
+    </section>
+
+    <!-- 快速操作 -->
+    <section class="quick-actions">
+      <button class="action-btn" id="addRuleBtn" title="为当前网站添加规则">
+        <span>➕</span>
+        <span data-i18n="addRuleForSite">添加规则</span>
+      </button>
+      <button class="action-btn" id="openOptionsBtn" title="打开设置">
+        <span>⚙️</span>
+        <span data-i18n="settings">设置</span>
+      </button>
+    </section>
+  </div>
+
+  <script src="popup.js" type="module"></script>
+</body>
+</html>
