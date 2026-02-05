@@ -1,0 +1,12 @@
+{
+  "addons": {
+    "smartproxy@id88.github.io": {
+      "updates": [
+        {
+          "version": "1.0.0",
+          "update_link": "https://github.com/id88/SmartProxy/releases/download/v1.0.0/smartproxy.xpi"
+        }
+      ]
+    }
+  }
+}

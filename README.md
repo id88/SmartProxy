@@ -24,6 +24,7 @@ SmartProxy 是一款轻量级、现代化的 Firefox 浏览器代理管理扩展
     *   右键菜单集成，支持快速添加当前网站规则。
 *   **代理认证**：支持带用户名密码认证的代理服务器（自动处理认证请求）。
 *   **配置管理**：支持 JSON 格式的配置导入与导出，方便备份和迁移。
+*   **自动更新**：支持通过 Firefox Add-ons Store 自动更新，或通过 GitHub Releases 进行版本检查与更新。
 
 ## 📂 目录结构
 
@@ -49,16 +50,31 @@ SmartProxy/
     └── utils.js
 ```
 
-## 🚀 安装指南 (开发模式)
+## � 安装指南
 
-由于本项目尚未发布到 Firefox Add-ons Store，您需要通过开发者模式加载：
+### 方法一：Firefox Add-ons Store 安装 (推荐)
 
-1.  克隆或下载本项目代码到本地。
+> 至 Firefox Add-ons Store，直接搜索 "SmartProxy" 安装。
+
+### 方法二：通过 GitHub Releases 安装 (支持自动更新)
+
+1.  访问本项目的 [Releases 页面](https://github.com/id88/SmartProxy/releases)。
+2.  下载最新版本的 `.xpi` 文件 (例如 `smartproxy.xpi`)。
+3.  将下载的文件拖入 Firefox 浏览器窗口即可安装。
+4.  **注意**：通过此方式安装的插件也会根据 `manifest.json` 中的配置自动检查 GitHub 上的新版本。
+
+### 方法三：开发模式安装 (开发者)
+
+如果您想参与开发或调试代码：
+
+1.  克隆本项目代码到本地：
+    ```bash
+    git clone https://github.com/id88/SmartProxy.git
+    ```
 2.  打开 Firefox 浏览器，在地址栏输入 `about:debugging` 并回车。
 3.  点击左侧菜单的 **"此 Firefox" (This Firefox)**。
 4.  点击 **"临时载入附加组件..." (Load Temporary Add-on...)** 按钮。
 5.  在文件选择对话框中，进入本项目目录，选择 `manifest.json` 文件。
-6.  安装成功后，SmartProxy 图标将出现在浏览器工具栏中。
 
 ## 📖 使用说明
 

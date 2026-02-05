@@ -43,8 +43,9 @@
   },
   "browser_specific_settings": {
     "gecko": {
-      "id": "smartproxy@example.com",
-      "strict_min_version": "109.0"
+      "id": "smartproxy@id88.github.io",
+      "strict_min_version": "109.0",
+      "update_url": "https://raw.githubusercontent.com/id88/SmartProxy/main/updates.json"
     }
   }
 }
