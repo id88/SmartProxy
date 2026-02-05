@@ -133,6 +133,7 @@ function renderAll() {
 function renderProxyTable() {
     const container = document.querySelector('.proxy-table-container');
     const tbody = document.getElementById('proxyTableBody');
+    tbody.innerHTML = '';
 
     if (state.proxies.length === 0) {
         container.classList.add('empty');
@@ -140,29 +141,78 @@ function renderProxyTable() {
     }
 
     container.classList.remove('empty');
-    tbody.innerHTML = state.proxies.map(proxy => `
-    <tr data-id="${proxy.id}">
-      <td><div class="proxy-color-cell" style="background-color: ${proxy.color}"></div></td>
-      <td>${escapeHtml(proxy.name)}</td>
-      <td><span class="proxy-type-badge">${proxy.type.toUpperCase()}</span></td>
-      <td>${escapeHtml(proxy.host)}</td>
-      <td>${proxy.port}</td>
-      <td>
-        <label class="status-toggle">
-          <input type="checkbox" ${proxy.enabled ? 'checked' : ''} data-action="toggle-proxy" data-id="${proxy.id}">
-          <span class="slider"></span>
-        </label>
-      </td>
-      <td>
-        <div class="action-buttons">
-          <button class="btn btn-icon" data-action="edit-proxy" data-id="${proxy.id}" title="编辑">✏️</button>
-          <button class="btn btn-icon" data-action="delete-proxy" data-id="${proxy.id}" title="删除">🗑️</button>
-        </div>
-      </td>
-    </tr>
-  `).join('');
 
-    // 绑定代理表格事件
+    state.proxies.forEach(proxy => {
+        const tr = document.createElement('tr');
+        tr.dataset.id = proxy.id;
+
+        const tdColor = document.createElement('td');
+        const divColor = document.createElement('div');
+        divColor.className = 'proxy-color-cell';
+        divColor.style.backgroundColor = proxy.color;
+        tdColor.appendChild(divColor);
+        tr.appendChild(tdColor);
+
+        const tdName = document.createElement('td');
+        tdName.textContent = proxy.name;
+        tr.appendChild(tdName);
+
+        const tdType = document.createElement('td');
+        const spanType = document.createElement('span');
+        spanType.className = 'proxy-type-badge';
+        spanType.textContent = proxy.type.toUpperCase();
+        tdType.appendChild(spanType);
+        tr.appendChild(tdType);
+
+        const tdHost = document.createElement('td');
+        tdHost.textContent = proxy.host;
+        tr.appendChild(tdHost);
+
+        const tdPort = document.createElement('td');
+        tdPort.textContent = proxy.port;
+        tr.appendChild(tdPort);
+
+        const tdStatus = document.createElement('td');
+        const label = document.createElement('label');
+        label.className = 'status-toggle';
+        const input = document.createElement('input');
+        input.type = 'checkbox';
+        input.checked = proxy.enabled;
+        input.dataset.action = 'toggle-proxy';
+        input.dataset.id = proxy.id;
+        const spanSlider = document.createElement('span');
+        spanSlider.className = 'slider';
+        label.appendChild(input);
+        label.appendChild(spanSlider);
+        tdStatus.appendChild(label);
+        tr.appendChild(tdStatus);
+
+        const tdAction = document.createElement('td');
+        const divAction = document.createElement('div');
+        divAction.className = 'action-buttons';
+
+        const btnEdit = document.createElement('button');
+        btnEdit.className = 'btn btn-icon';
+        btnEdit.dataset.action = 'edit-proxy';
+        btnEdit.dataset.id = proxy.id;
+        btnEdit.title = '编辑';
+        btnEdit.textContent = '✏️';
+
+        const btnDelete = document.createElement('button');
+        btnDelete.className = 'btn btn-icon';
+        btnDelete.dataset.action = 'delete-proxy';
+        btnDelete.dataset.id = proxy.id;
+        btnDelete.title = '删除';
+        btnDelete.textContent = '🗑️';
+
+        divAction.appendChild(btnEdit);
+        divAction.appendChild(btnDelete);
+        tdAction.appendChild(divAction);
+        tr.appendChild(tdAction);
+
+        tbody.appendChild(tr);
+    });
+
     bindProxyTableEvents();
 }
 
@@ -305,6 +355,7 @@ async function toggleProxyEnabled(id, enabled) {
 function renderRuleTable() {
     const container = document.querySelector('.rule-table-container');
     const tbody = document.getElementById('ruleTableBody');
+    tbody.innerHTML = '';
 
     if (state.rules.length === 0) {
         container.classList.add('empty');
@@ -312,41 +363,98 @@ function renderRuleTable() {
     }
 
     container.classList.remove('empty');
-    tbody.innerHTML = state.rules.map(rule => {
+
+    state.rules.forEach(rule => {
         const proxy = rule.proxyId === 'direct'
             ? { name: '直接连接', color: '#666' }
             : state.proxies.find(p => p.id === rule.proxyId) || { name: '未知', color: '#666' };
 
-        return `
-      <tr data-id="${rule.id}" draggable="true">
-        <td><span class="drag-handle">⋮⋮</span></td>
-        <td title="${escapeHtml(rule.pattern)}">${escapeHtml(truncate(rule.pattern, 40))}</td>
-        <td><span class="rule-type-badge">${getRuleTypeName(rule.type)}</span></td>
-        <td>
-          <span style="display: inline-flex; align-items: center; gap: 6px;">
-            <span style="width: 10px; height: 10px; border-radius: 50%; background: ${proxy.color}"></span>
-            ${escapeHtml(proxy.name)}
-          </span>
-        </td>
-        <td>
-          <label class="status-toggle">
-            <input type="checkbox" ${rule.enabled ? 'checked' : ''} data-action="toggle-rule" data-id="${rule.id}">
-            <span class="slider"></span>
-          </label>
-        </td>
-        <td>
-          <div class="action-buttons">
-            <button class="btn btn-icon" data-action="edit-rule" data-id="${rule.id}" title="编辑">✏️</button>
-            <button class="btn btn-icon" data-action="delete-rule" data-id="${rule.id}" title="删除">🗑️</button>
-          </div>
-        </td>
-      </tr>
-    `;
-    }).join('');
+        const tr = document.createElement('tr');
+        tr.dataset.id = rule.id;
+        tr.draggable = true;
 
-    // 绑定规则表格事件
+        const tdHandle = document.createElement('td');
+        const spanHandle = document.createElement('span');
+        spanHandle.className = 'drag-handle';
+        spanHandle.textContent = '⋮⋮';
+        tdHandle.appendChild(spanHandle);
+        tr.appendChild(tdHandle);
+
+        const tdPattern = document.createElement('td');
+        tdPattern.title = rule.pattern;
+        tdPattern.textContent = truncate(rule.pattern, 40);
+        tr.appendChild(tdPattern);
+
+        const tdType = document.createElement('td');
+        const spanType = document.createElement('span');
+        spanType.className = 'rule-type-badge';
+        spanType.textContent = getRuleTypeName(rule.type);
+        tdType.appendChild(spanType);
+        tr.appendChild(tdType);
+
+        const tdProxy = document.createElement('td');
+        const divProxy = document.createElement('div'); // Using default style
+        // inline styles are annoying in JS, let's just append spans
+        const spanDot = document.createElement('span');
+        spanDot.style.display = 'inline-block';
+        spanDot.style.width = '10px';
+        spanDot.style.height = '10px';
+        spanDot.style.borderRadius = '50%';
+        spanDot.style.background = proxy.color;
+        spanDot.style.marginRight = '6px';
+
+        // Wrap in a container for alignment if needed, or just append
+        const spanProxyContainer = document.createElement('span');
+        spanProxyContainer.style.display = 'inline-flex';
+        spanProxyContainer.style.alignItems = 'center';
+
+        spanProxyContainer.appendChild(spanDot);
+        spanProxyContainer.appendChild(document.createTextNode(proxy.name));
+        tdProxy.appendChild(spanProxyContainer);
+        tr.appendChild(tdProxy);
+
+        const tdStatus = document.createElement('td');
+        const label = document.createElement('label');
+        label.className = 'status-toggle';
+        const input = document.createElement('input');
+        input.type = 'checkbox';
+        input.checked = rule.enabled;
+        input.dataset.action = 'toggle-rule';
+        input.dataset.id = rule.id;
+        const spanSlider = document.createElement('span');
+        spanSlider.className = 'slider';
+        label.appendChild(input);
+        label.appendChild(spanSlider);
+        tdStatus.appendChild(label);
+        tr.appendChild(tdStatus);
+
+        const tdAction = document.createElement('td');
+        const divAction = document.createElement('div');
+        divAction.className = 'action-buttons';
+
+        const btnEdit = document.createElement('button');
+        btnEdit.className = 'btn btn-icon';
+        btnEdit.dataset.action = 'edit-rule';
+        btnEdit.dataset.id = rule.id;
+        btnEdit.title = '编辑';
+        btnEdit.textContent = '✏️';
+
+        const btnDelete = document.createElement('button');
+        btnDelete.className = 'btn btn-icon';
+        btnDelete.dataset.action = 'delete-rule';
+        btnDelete.dataset.id = rule.id;
+        btnDelete.title = '删除';
+        btnDelete.textContent = '🗑️';
+
+        divAction.appendChild(btnEdit);
+        divAction.appendChild(btnDelete);
+        tdAction.appendChild(divAction);
+        tr.appendChild(tdAction);
+
+        tbody.appendChild(tr);
+    });
+
     bindRuleTableEvents();
-    // 绑定拖拽事件
     setupDragAndDrop();
 }
 
@@ -427,8 +535,19 @@ function setupDragAndDrop() {
  */
 function updateRuleProxySelect() {
     const select = document.getElementById('ruleProxy');
-    select.innerHTML = '<option value="direct">直接连接</option>' +
-        state.proxies.map(p => `<option value="${p.id}">${escapeHtml(p.name)}</option>`).join('');
+    select.innerHTML = '';
+
+    const optDirect = document.createElement('option');
+    optDirect.value = 'direct';
+    optDirect.textContent = '直接连接';
+    select.appendChild(optDirect);
+
+    state.proxies.forEach(p => {
+        const opt = document.createElement('option');
+        opt.value = p.id;
+        opt.textContent = p.name;
+        select.appendChild(opt);
+    });
 }
 
 /**
@@ -554,8 +673,19 @@ function renderSettings() {
 
     // 更新默认动作选择器
     const defaultActionSelect = document.getElementById('defaultAction');
-    defaultActionSelect.innerHTML = '<option value="direct">直接连接</option>' +
-        state.proxies.map(p => `<option value="${p.id}">${escapeHtml(p.name)}</option>`).join('');
+    defaultActionSelect.innerHTML = '';
+
+    const optDirect = document.createElement('option');
+    optDirect.value = 'direct';
+    optDirect.textContent = '直接连接';
+    defaultActionSelect.appendChild(optDirect);
+
+    state.proxies.forEach(p => {
+        const opt = document.createElement('option');
+        opt.value = p.id;
+        opt.textContent = p.name;
+        defaultActionSelect.appendChild(opt);
+    });
     defaultActionSelect.value = settings.defaultAction || 'direct';
 
     document.getElementById('pacScriptUrl').value = settings.pacScriptUrl || '';

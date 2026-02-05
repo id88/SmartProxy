@@ -139,23 +139,48 @@ function updateStatusBadge() {
  */
 function updateProxyList() {
     const container = document.getElementById('proxyList');
+    container.innerHTML = '';
 
     if (currentState.proxies.length === 0) {
-        container.innerHTML = '<div class="empty-state">暂无代理配置</div>';
+        const empty = document.createElement('div');
+        empty.className = 'empty-state';
+        empty.textContent = '暂无代理配置';
+        container.appendChild(empty);
         return;
     }
 
-    container.innerHTML = currentState.proxies.map(proxy => `
-    <div class="proxy-item ${proxy.id === currentState.globalProxyId ? 'selected' : ''}" 
-         data-id="${proxy.id}">
-      <div class="proxy-color" style="background-color: ${proxy.color}"></div>
-      <div class="proxy-info">
-        <div class="proxy-name">${escapeHtml(proxy.name)}</div>
-        <div class="proxy-address">${escapeHtml(proxy.host)}:${proxy.port}</div>
-      </div>
-      <span class="proxy-type">${proxy.type}</span>
-    </div>
-  `).join('');
+    currentState.proxies.forEach(proxy => {
+        const divItem = document.createElement('div');
+        divItem.className = 'proxy-item' + (proxy.id === currentState.globalProxyId ? ' selected' : '');
+        divItem.dataset.id = proxy.id;
+
+        const divColor = document.createElement('div');
+        divColor.className = 'proxy-color';
+        divColor.style.backgroundColor = proxy.color;
+        divItem.appendChild(divColor);
+
+        const divInfo = document.createElement('div');
+        divInfo.className = 'proxy-info';
+
+        const divName = document.createElement('div');
+        divName.className = 'proxy-name';
+        divName.textContent = proxy.name;
+        divInfo.appendChild(divName);
+
+        const divAddress = document.createElement('div');
+        divAddress.className = 'proxy-address';
+        divAddress.textContent = `${proxy.host}:${proxy.port}`;
+        divInfo.appendChild(divAddress);
+
+        divItem.appendChild(divInfo);
+
+        const spanType = document.createElement('span');
+        spanType.className = 'proxy-type';
+        spanType.textContent = proxy.type;
+        divItem.appendChild(spanType);
+
+        container.appendChild(divItem);
+    });
 
     // 绑定点击事件
     container.querySelectorAll('.proxy-item').forEach(item => {
@@ -242,24 +267,47 @@ async function handleTestUrl() {
         });
 
         resultEl.classList.add('show');
+        resultEl.innerHTML = ''; // Clear previous
 
         if (result.matched) {
             resultEl.classList.remove('no-match');
             resultEl.classList.add('matched');
-            resultEl.innerHTML = `
-        <div><strong>✓ 匹配规则:</strong> ${escapeHtml(result.matchedRule.pattern)}</div>
-        <div><strong>规则类型:</strong> ${result.matchedRule.type}</div>
-        <div><strong>代理:</strong> ${result.proxy ? result.proxy.name : '直接连接'}</div>
-      `;
+
+            const divMatch = document.createElement('div');
+            const bMatch = document.createElement('strong');
+            bMatch.textContent = '✓ 匹配规则: ';
+            divMatch.appendChild(bMatch);
+            divMatch.appendChild(document.createTextNode(result.matchedRule.pattern));
+            resultEl.appendChild(divMatch);
+
+            const divType = document.createElement('div');
+            const bType = document.createElement('strong');
+            bType.textContent = '规则类型: ';
+            divType.appendChild(bType);
+            divType.appendChild(document.createTextNode(result.matchedRule.type));
+            resultEl.appendChild(divType);
+
+            const divProxy = document.createElement('div');
+            const bProxy = document.createElement('strong');
+            bProxy.textContent = '代理: ';
+            divProxy.appendChild(bProxy);
+            divProxy.appendChild(document.createTextNode(result.proxy ? result.proxy.name : '直接连接'));
+            resultEl.appendChild(divProxy);
+
         } else {
             resultEl.classList.remove('matched');
             resultEl.classList.add('no-match');
-            resultEl.innerHTML = '<div>✗ 未匹配任何规则，将使用默认设置</div>';
+            const div = document.createElement('div');
+            div.textContent = '✗ 未匹配任何规则，将使用默认设置';
+            resultEl.appendChild(div);
         }
     } catch (error) {
         console.error('测试失败:', error);
         resultEl.classList.add('show', 'no-match');
-        resultEl.innerHTML = '<div>测试失败: ' + escapeHtml(error.message) + '</div>';
+        resultEl.innerHTML = '';
+        const div = document.createElement('div');
+        div.textContent = '测试失败: ' + error.message;
+        resultEl.appendChild(div);
     }
 }
 
@@ -320,7 +368,10 @@ function showMessage(message, type = 'info') {
         resultEl.classList.add('no-match');
     }
 
-    resultEl.innerHTML = `<div>${escapeHtml(message)}</div>`;
+    resultEl.innerHTML = '';
+    const div = document.createElement('div');
+    div.textContent = message;
+    resultEl.appendChild(div);
 
     // 3秒后隐藏
     setTimeout(() => {
